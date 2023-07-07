@@ -55,6 +55,10 @@ class Fox(Animal):
 
     def move(self, other_animals: List[Animal]):
         self.chase_closest(other_animals, condition=lambda x: x.is_carnivore)
+        for a in other_animals:
+            if self.is_colliding(a):
+                if not a.is_carnivore:
+                    other_animals.remove(a)
         super(Fox, self).move(other_animals)
 
     def chase_closest(self, other_animals, condition=None):

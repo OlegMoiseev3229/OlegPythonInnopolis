@@ -39,6 +39,20 @@ class AnimalAPIRequester:
                         images.append(im)
         return images
 
+    async def get_urls(self, limit):
+        if limit > 10:
+            raise ValueError("Limit should be <= 10")
+        elif limit < 1:
+            raise ValueError("Limit should be >= 1")
+        url = self.url.format(limit)
+        async with aiohttp.client.ClientSession() as session:
+            async with session.get(url) as response:
+                jsons = await response.json()
+                urls = []
+                for i, j in enumerate(jsons):
+                    urls.append(j.get('url'))
+        return urls
+
     async def get_and_save(self, limit=1, folder=None, names=None):
         if folder is None:
             folder = self.api + "s"
