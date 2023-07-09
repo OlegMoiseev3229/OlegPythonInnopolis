@@ -1,9 +1,8 @@
 import asyncio
 
 from config import BOT_TOKEN
-import aiogram
 from aiogram import Bot, Dispatcher, executor, types
-from day3_async_requests_aiohttp import AnimalAPIRequester
+#from day3_async_requests_aiohttp import AnimalAPIRequester
 
 
 def main():
